@@ -1,7 +1,14 @@
-import { defineConfig } from "vite"
-import vue from "@vitejs/plugin-vue"
+// vite.config.js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
   plugins: [vue()],
-  base: "/Landing-Page/", // <- IMPORTANTE para GitHub Pages (org/repo)
+  base: '/Landing-Page/', // ok para GitHub Pages
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
 })
