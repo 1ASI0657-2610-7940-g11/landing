@@ -1,5 +1,6 @@
-<script setup></script>
-
+<script setup>
+const base = import.meta.env.BASE_URL
+</script>
 <template>
   <section id="hero" class="pt-24 pb-20 bg-hero relative overflow-hidden">
     <!-- Decorativos suaves -->
@@ -50,9 +51,9 @@
         <!-- Logos mini (opcional) -->
         <div class="mt-6 flex items-center gap-4 opacity-70">
           <span class="text-xs uppercase tracking-wider text-slate-500">Ecosistema:</span>
-          <img src="/src/assets/logos/primax1.jpg" alt="Primax" class="h-6" />
-          <img src="/src/assets/logos/petroperu1.jpg" alt="Petroperú" class="h-6" />
-          <img src="/src/assets/logos/repsol1.jpg" alt="Repsol" class="h-6" />
+          <img :src="base + 'logos/primax1.jpg'" alt="Primax" class="h-6" loading="lazy" />
+          <img :src="base + 'logos/petroperu1.jpg'" alt="Petroperú" class="h-6" loading="lazy" />
+          <img :src="base + 'logos/repsol1.jpg'" alt="Repsol" class="h-6" loading="lazy" />
         </div>
 
         <p class="mt-2 text-[11px] text-slate-500">
@@ -65,7 +66,7 @@
         <div
             class="rounded-[1.5rem] overflow-hidden border shadow-[var(--shadow-soft)] bg-white ring-1 ring-white/40"
         >
-          <img src="/src/assets/ui/hero-mock.svg" alt="Vista previa FuelTrack" class="w-full" />
+          <img src="/ui/hero-mock.svg" alt="Vista previa FuelTrack" class="w-full" />
         </div>
 
         <!-- Tarjetitas flotantes decorativas -->

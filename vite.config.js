@@ -5,10 +5,6 @@ import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
   plugins: [vue()],
-  base: '/Landing-Page/', // ok para GitHub Pages
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
+  base: '/Landing-Page/',            // <- necesario para Pages
+  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
 })

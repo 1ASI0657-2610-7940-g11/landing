@@ -1,69 +1,41 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watchEffect } from 'vue'
 import { useScrollTo } from '@/composables/useScrollTo'
 
 const { scrollTo } = useScrollTo()
-
-const links = [
-  { id: 'value', label: 'Valor' },
-  { id: 'features', label: 'Características' },
-  { id: 'how', label: 'Cómo funciona' },
-  { id: 'pricing', label: 'Precios' },
-  { id: 'faq', label: 'FAQ' },
-  { id: 'contact', label: 'Contacto' },
-]
-
+const links = [ /* ... */ ]
 const mobileOpen = ref(false)
 const activeId = ref('')
 const isScrolled = ref(false)
 
-function go(id) {
-  scrollTo(id)
-  mobileOpen.value = false
-}
-
-function onKeydown(e) {
-  if (e.key === 'Escape') mobileOpen.value = false
-}
+function go(id){ scrollTo(id); mobileOpen.value=false }
+function onKeydown(e){ if(e.key==='Escape') mobileOpen.value=false }
+function onScroll(){ isScrolled.value = window.scrollY > 4 }
 
 let observer
-onMounted(() => {
-  // Sombra/estilos al hacer scroll
-  const onScroll = () => {
-    isScrolled.value = window.scrollY > 4
-  }
-  onScroll()
-  window.addEventListener('scroll', onScroll, { passive: true })
 
-  // Resaltar link activo con IntersectionObserver
-  const opts = { rootMargin: '-30% 0px -60% 0px', threshold: [0, 0.5, 1] }
-  observer = new IntersectionObserver((entries) => {
-    const visible = entries
-        .filter(e => e.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+onMounted(() => {
+  onScroll()
+  window.addEventListener('scroll', onScroll, { passive:true })
+  window.addEventListener('keydown', onKeydown)
+  const opts = { rootMargin: '-30% 0px -60% 0px', threshold:[0,0.5,1] }
+  observer = new IntersectionObserver((entries)=>{
+    const visible = entries.filter(e=>e.isIntersecting)
+        .sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0]
     if (visible?.target?.id) activeId.value = visible.target.id
   }, opts)
-
-  links.forEach(l => {
-    const el = document.getElementById(l.id)
-    if (el) observer.observe(el)
-  })
-
-  window.addEventListener('keydown', onKeydown)
-
-  // Bloquea scroll del body cuando el menú móvil está abierto
-  watchEffect(() => {
-    document.documentElement.style.overflow = mobileOpen.value ? 'hidden' : ''
-  })
-
-  onUnmounted(() => {
-    window.removeEventListener('scroll', onScroll)
-    window.removeEventListener('keydown', onKeydown)
-    observer?.disconnect()
-    document.documentElement.style.overflow = ''
-  })
+  links.forEach(l => { const el = document.getElementById(l.id); if (el) observer.observe(el) })
 })
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+  window.removeEventListener('keydown', onKeydown)
+  observer?.disconnect()
+})
+
+watchEffect(()=>{ document.documentElement.style.overflow = mobileOpen.value ? 'hidden' : '' })
 </script>
+
 
 <template>
   <!-- Enlace para saltar al contenido -->
