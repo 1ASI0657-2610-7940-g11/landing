@@ -52,7 +52,7 @@ watchEffect(()=>{ document.documentElement.style.overflow = mobileOpen.value ? '
     <div class="section !py-3 flex items-center justify-between">
       <!-- Logo -->
       <a href="#hero" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
-        <span>FuelTrack</span><span class="text-brand-600">.</span>
+        <span class="text-4xl">FuelTrack</span><span class="text-brand-600 text-4xl">.</span>
       </a>
 
       <!-- Desktop nav -->

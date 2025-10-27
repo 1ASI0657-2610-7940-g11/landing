@@ -12,7 +12,6 @@ const base = import.meta.env.BASE_URL
     <div class="section relative grid md:grid-cols-2 gap-10 items-center">
       <!-- Columna texto -->
       <div class="text-center md:text-left">
-        <span class="badge">Nuevo</span>
         <h1 class="title-xl mt-4 leading-[1.1]">
           Gestión de combustible
           <span class="bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent">
@@ -28,8 +27,14 @@ const base = import.meta.env.BASE_URL
 
         <!-- CTA primario/secundario -->
         <div class="mt-8 flex flex-col sm:flex-row items-center md:items-start gap-3">
-          <a href="#pricing" class="btn btn-primary w-full sm:w-auto">Probar ahora</a>
-          <a href="#how" class="btn btn-outline w-full sm:w-auto">Cómo funciona</a>
+          <!-- Using Tailwind arbitrary value to get a size between text-xl (1.25rem) and text-2xl (1.5rem) -->
+          <a
+            href="#pricing"
+            class="btn btn-primary w-full sm:w-auto text-[1.375rem] font-semibold px-10 py-4 rounded-lg shadow-lg ring-2 ring-green-400/25 hover:ring-4 hover:shadow-2xl transition-transform duration-200 ease-out hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-green-300/40"
+          >
+            Probar ahora
+          </a>
+          <a href="#how" class="btn btn-outline w-full sm:w-auto text-[1.175rem] font-semibold px-8 py-4 rounded-lg">Cómo funciona</a>
         </div>
 
         <!-- Barra de confianza -->
@@ -51,14 +56,11 @@ const base = import.meta.env.BASE_URL
         <!-- Logos mini (opcional) -->
         <div class="mt-6 flex items-center gap-4 opacity-70">
           <span class="text-xs uppercase tracking-wider text-slate-500">Ecosistema:</span>
-          <img :src="base + 'logos/primax1.jpg'" alt="Primax" class="h-6" loading="lazy" />
+          <img :src="base + 'logos/Logo-PRIMAX.png'" alt="Primax" class="h-6" loading="lazy" />
           <img :src="base + 'logos/petroperu1.jpg'" alt="Petroperú" class="h-6" loading="lazy" />
-          <img :src="base + 'logos/repsol1.jpg'" alt="Repsol" class="h-6" loading="lazy" />
+          <img :src="base + 'logos/Repsol-Logo_.png'" alt="Repsol" class="h-6" loading="lazy" />
         </div>
 
-        <p class="mt-2 text-[11px] text-slate-500">
-          *Métricas ilustrativas del landing.
-        </p>
       </div>
 
       <!-- Columna mock UI -->
