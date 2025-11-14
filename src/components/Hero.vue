@@ -64,12 +64,18 @@ const base = import.meta.env.BASE_URL
       </div>
 
       <!-- Columna mock UI -->
-      <div class="relative">
+      <div class="relative flex justify-center md:justify-end">
         <div
-            class="rounded-[1.5rem] overflow-hidden border shadow-[var(--shadow-soft)] bg-white ring-1 ring-white/40"
+            class="w-full max-w-[360px] md:max-w-[400px] rounded-[1.5rem] overflow-hidden border shadow-[var(--shadow-soft)] bg-white ring-1 ring-white/40"
         >
-          <img src="/ui/hero-mock.svg" alt="Vista previa FuelTrack" class="w-full" />
+          <img
+              :src="base + 'ui/HEROM1.png'"
+              alt="Vista previa FuelTrack"
+              class="w-full h-auto"
+              loading="lazy"
+          />
         </div>
+
 
         <!-- Tarjetitas flotantes decorativas -->
         <div class="hidden md:block">

@@ -1,41 +1,3 @@
-<script setup>
-import { ref, onMounted, onUnmounted, watchEffect } from 'vue'
-import { useScrollTo } from '@/composables/useScrollTo'
-
-const { scrollTo } = useScrollTo()
-const links = [ /* ... */ ]
-const mobileOpen = ref(false)
-const activeId = ref('')
-const isScrolled = ref(false)
-
-function go(id){ scrollTo(id); mobileOpen.value=false }
-function onKeydown(e){ if(e.key==='Escape') mobileOpen.value=false }
-function onScroll(){ isScrolled.value = window.scrollY > 4 }
-
-let observer
-
-onMounted(() => {
-  onScroll()
-  window.addEventListener('scroll', onScroll, { passive:true })
-  window.addEventListener('keydown', onKeydown)
-  const opts = { rootMargin: '-30% 0px -60% 0px', threshold:[0,0.5,1] }
-  observer = new IntersectionObserver((entries)=>{
-    const visible = entries.filter(e=>e.isIntersecting)
-        .sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0]
-    if (visible?.target?.id) activeId.value = visible.target.id
-  }, opts)
-  links.forEach(l => { const el = document.getElementById(l.id); if (el) observer.observe(el) })
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll)
-  window.removeEventListener('keydown', onKeydown)
-  observer?.disconnect()
-})
-
-watchEffect(()=>{ document.documentElement.style.overflow = mobileOpen.value ? 'hidden' : '' })
-</script>
-
 
 <template>
   <!-- Enlace para saltar al contenido -->
@@ -52,6 +14,11 @@ watchEffect(()=>{ document.documentElement.style.overflow = mobileOpen.value ? '
     <div class="section !py-3 flex items-center justify-between">
       <!-- Logo -->
       <a href="#hero" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
+        <img
+            src="/logos/logoapp.png"
+            alt="FuelTrack Logo"
+            class="h-10 w-10 object-contain"
+        />
         <span class="text-4xl">FuelTrack</span><span class="text-brand-600 text-4xl">.</span>
       </a>
 
@@ -121,6 +88,44 @@ watchEffect(()=>{ document.documentElement.style.overflow = mobileOpen.value ? '
     </div>
   </header>
 </template>
+<script setup>
+import { ref, onMounted, onUnmounted, watchEffect } from 'vue'
+import { useScrollTo } from '@/composables/useScrollTo'
+
+const { scrollTo } = useScrollTo()
+const links = [ /* ... */ ]
+const mobileOpen = ref(false)
+const activeId = ref('')
+const isScrolled = ref(false)
+
+function go(id){ scrollTo(id); mobileOpen.value=false }
+function onKeydown(e){ if(e.key==='Escape') mobileOpen.value=false }
+function onScroll(){ isScrolled.value = window.scrollY > 4 }
+
+let observer
+
+onMounted(() => {
+  onScroll()
+  window.addEventListener('scroll', onScroll, { passive:true })
+  window.addEventListener('keydown', onKeydown)
+  const opts = { rootMargin: '-30% 0px -60% 0px', threshold:[0,0.5,1] }
+  observer = new IntersectionObserver((entries)=>{
+    const visible = entries.filter(e=>e.isIntersecting)
+        .sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0]
+    if (visible?.target?.id) activeId.value = visible.target.id
+  }, opts)
+  links.forEach(l => { const el = document.getElementById(l.id); if (el) observer.observe(el) })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+  window.removeEventListener('keydown', onKeydown)
+  observer?.disconnect()
+})
+
+watchEffect(()=>{ document.documentElement.style.overflow = mobileOpen.value ? 'hidden' : '' })
+</script>
+
 
 <style scoped>
 /* nada extra por ahora */

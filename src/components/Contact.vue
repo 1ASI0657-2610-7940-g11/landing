@@ -111,12 +111,19 @@ Gracias.`
           </li>
         </ul>
 
-        <!-- Mapa/placeholder -->
+        <!-- Mapa real -->
         <div class="mt-6 rounded-[var(--radius-xl)] overflow-hidden border">
-          <div class="aspect-[16/10] bg-slate-100 grid place-items-center text-slate-500 text-sm">
-            Ubicación (opcional)
+          <div class="aspect-[16/10]">
+            <iframe
+                class="w-full h-full border-0"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.593906872803!2d-77.013!3d-12.086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c80b5c9e0b1b%3A0x7b9a3c7f1b9a0d9a!2sLima%2C%20Per%C3%BA!5e0!3m2!1ses-419!2spe!4v1700000000000"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+            ></iframe>
           </div>
         </div>
+
 
         <p class="mt-4 text-[12px] text-slate-500">
           *Este sitio es un prototipo estático. “No puedo confirmar” detalles operativos sin entrevistas a proveedores.

@@ -45,7 +45,6 @@ const faqs = [
       <div class="text-center mt-10">
         <a href="#contact" class="btn btn-primary">¿Tienes otra pregunta?</a>
         <p class="mt-3 text-[12px] text-slate-500">
-          Nota: este sitio es un prototipo estático. “No puedo confirmar” detalles operativos sin entrevistas a proveedores.
         </p>
       </div>
     </div>
